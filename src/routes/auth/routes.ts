@@ -1,26 +1,12 @@
-import type { Request, Response } from "express";
-
+import { signIn, signOut, signUp } from "#controllers/auth.js";
 import { Router } from "express";
+
 const authRouter = Router();
 
-authRouter.get("/", (req, res) => res.send("auth"));
+authRouter.post("/sign-up", signUp);
 
-authRouter.post("/sign-up", (_req: Request, res: Response) => {
-  res.send({
-    title: "Sign up",
-  });
-});
+authRouter.post("/sign-in", signIn);
 
-authRouter.post("/sign-in", (_req: Request, res: Response) => {
-  res.send({
-    title: "Sign in",
-  });
-});
-
-authRouter.post("/sign-out", (_req: Request, res: Response) => {
-  res.send({
-    title: "Sign out",
-  });
-});
+authRouter.post("/sign-out", signOut);
 
 export default authRouter;

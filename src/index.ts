@@ -13,7 +13,7 @@ const app = express();
 
 app.use(json());
 app.use(urlencoded({ extended: false }));
-// eslint-disable-next-line @typescript-eslint/no-unsafe-call
+
 app.use(cookieParser());
 app.use(helmet());
 app.use(morgan("combined"));
