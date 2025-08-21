@@ -12,9 +12,8 @@ import morgan from "morgan";
 const app = express();
 
 app.use(json());
-app.use(urlencoded({ extended: false }));
-
 app.use(cookieParser());
+app.use(urlencoded({ extended: false }));
 app.use(helmet());
 app.use(morgan("combined"));
 

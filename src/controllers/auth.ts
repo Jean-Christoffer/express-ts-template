@@ -118,6 +118,22 @@ export const signIn = async (req: Request, res: Response, next: NextFunction) =>
       name: user.name,
     };
 
+    const oneDay = 24 * 60 * 60;
+
+    res.cookie("accessToken", accessToken, {
+      httpOnly: true,
+      maxAge: oneDay,
+      sameSite: "strict",
+      secure: process.env.NODE_ENV === "production",
+    });
+
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      maxAge: env.JWT_EXPIRES_IN,
+      sameSite: "strict",
+      secure: process.env.NODE_ENV === "production",
+    });
+
     res.status(200).json({
       data: {
         accessToken,
