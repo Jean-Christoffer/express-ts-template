@@ -118,7 +118,7 @@ export const signIn = async (req: Request, res: Response, next: NextFunction) =>
       name: user.name,
     };
 
-    const oneDay = 24 * 60 * 60;
+    const oneDay = 24 * 60 * 60 * 1000;
 
     res.cookie("accessToken", accessToken, {
       httpOnly: true,

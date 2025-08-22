@@ -38,7 +38,8 @@ export const errorHandler = (err: unknown, _req: Request, res: Response, next: N
           break;
         default:
           status = status || 500;
-          message = "A database error occurred.";
+          message = `A error occured ${error}`;
+
           break;
       }
     }
