@@ -9,6 +9,7 @@ import { eq } from "drizzle-orm";
 import jwt from "jsonwebtoken";
 import { z } from "zod";
 
+import { deleteRefreshToken } from "../helpers.js";
 import { AppError } from "../helpers.js";
 import db from "../lib/db/index.js";
 
@@ -119,6 +120,7 @@ export const signIn = async (req: Request, res: Response, next: NextFunction) =>
     };
 
     const oneDay = 24 * 60 * 60 * 1000;
+    const twoDays = 48 * 60 * 60 * 1000;
 
     res.cookie("accessToken", accessToken, {
       httpOnly: true,
@@ -129,7 +131,7 @@ export const signIn = async (req: Request, res: Response, next: NextFunction) =>
 
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      maxAge: env.JWT_EXPIRES_IN,
+      maxAge: twoDays,
       sameSite: "strict",
       secure: process.env.NODE_ENV === "production",
     });
@@ -148,6 +150,18 @@ export const signIn = async (req: Request, res: Response, next: NextFunction) =>
   }
 };
 
-export const signOut = (_req: Request, res: Response) => {
-  res.send("asd");
+export const signOut = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { refreshToken } = req.cookies as Record<string, string>;
+
+    await deleteRefreshToken(refreshToken);
+    res.clearCookie("refreshToken", { path: "/" });
+    res.clearCookie("accessToken", { path: "/" });
+
+    res.status(200).json({ message: "Logged out", success: true });
+  } catch (e) {
+    console.error(e);
+
+    next(new AppError("A error occurred.", 500, { cause: e }));
+  }
 };
