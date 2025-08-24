@@ -1,5 +1,6 @@
 import type { Request, Response } from "express";
 
+import arcjetHandler from "#middlewares/arcjetHandler.js";
 import { errorHandler } from "#middlewares/errorhandler.js";
 import authRouter from "#routes/auth/routes.js";
 import subscriptionRouter from "#routes/subscription/routes.js";
@@ -12,15 +13,17 @@ import morgan from "morgan";
 const app = express();
 
 app.use(json());
-app.use(cookieParser());
 app.use(urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(arcjetHandler);
+
 app.use(helmet());
 app.use(morgan("combined"));
 
 const port = 3000;
 
 app.get("/", (_req: Request, res: Response) => {
-  res.send("Yo");
+  res.send("Hello");
 });
 
 app.use("/api/v1/auth", authRouter);
