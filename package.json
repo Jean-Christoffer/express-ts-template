@@ -42,9 +42,11 @@
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.1",
     "uuid": "^11.1.0",
-    "zod": "^4.0.17"
+    "zod": "^4.0.17",
+    "pg": "^8.16.3"
   },
   "devDependencies": {
+    "@types/pg": "^8.15.5",
     "@eslint/js": "^9.33.0",
     "@tsconfig/node24": "^24.0.1",
     "@types/cookie-parser": "^1.4.9",
