@@ -6,6 +6,11 @@
     "outDir": "./dist",
     "rootDir": "./"
   },
-  "include": ["src/**/*"],
-  "exclude": ["dist"]
+  "include": [
+    "src/**/*",
+    "drizzle.config.ts"
+  ],
+  "exclude": [
+    "dist"
+  ]
 }
