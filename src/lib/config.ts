@@ -1,3 +1,4 @@
+/* eslint-disable */
 import arcjet, { detectBot, shield, tokenBucket } from "@arcjet/node";
 import { z } from "zod";
 

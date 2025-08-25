@@ -12,7 +12,7 @@ export const subscriptions = pgTable("subscriptions", {
   createdAt: timestamp("created_at").notNull().defaultNow(),
   currency: text("currency").default("NOK").notNull(),
   frequency: frequencyEnum("frequency").default("monthly"),
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
   name: varchar({ length: 255 }).notNull(),
   payment: text("payment").notNull(),
   price: integer().notNull(),
