@@ -32,7 +32,7 @@
     "#*": "./src/*"
   },
   "dependencies": {
-    "@arcjet/inspect": "^1.0.0-beta.10",
+    "@arcjet/inspect": "^1.0.0-beta.12",
     "@arcjet/node": "^1.0.0-beta.10",
     "@neondatabase/serverless": "^1.0.1",
     "bcrypt-ts": "^7.1.0",
